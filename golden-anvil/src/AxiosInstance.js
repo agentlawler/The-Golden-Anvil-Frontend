@@ -2,7 +2,7 @@ import axios from 'axios'
 
 const AxiosInstance = axios.create({
     // baseURL: '[leave here for eventual deployment]',
-    baseURL: 'http://localhost:8000/[your_base_url, if applicable]',
+    baseURL: 'http://localhost:8000/http://localhost:8000/ganvil/',
     timeout: 5000,
     headers: {
         "Authorization": "JWT " + localStorage.getItem('access_token'),

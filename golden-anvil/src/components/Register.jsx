@@ -1,6 +1,6 @@
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 import AxiosInstance from '../AxiosInstance'
-import {LoginContext} from '../ContextFiles/LoginContext'
+import {LoginContext} from '../LoginContext'
 
 const Register = () => {
 
@@ -18,23 +18,23 @@ const Register = () => {
         setFormValues({...formValues, [event.target.name]: event.target.value})
     }
 
-    const handleSumbit = async (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault()
 
         await AxiosInstance.post('/users/create', {
-            email: formData.email,
-            first_name: formData.first_name,
-            last_name: formData.last_name,
-            username: formData.username,
-            password: formData.password
+            email: formValues.email,
+            first_name: formValues.first_name,
+            last_name: formValues.last_name,
+            username: formValues.username,
+            password: formValues.password
         })
 
         .then((res) => {
-            localStorage.setItem('username', formData.username)
+            localStorage.setItem('username', formValues.username)
             localStorage.setItem('user_id', res.data.id)
             AxiosInstance.post('token/obtain/', {
-                username: formData.username,
-                password: formData.password
+                username: formValues.username,
+                password: formValues.password
             })
         .then(res => {
             AxiosInstance.defaults.headers['Authorization'] = `JWT ${res.data.access}`
@@ -51,19 +51,19 @@ const Register = () => {
           <h1>Register</h1>
             <form onSubmit={handleSubmit}>
                 Email: <input type='email' name='email' placeholder='Email'
-                    value={formData.email} onChange={handleChange} />
+                    value={formValues.email} onChange={handleChange} />
                 First name: <input type='text'
                     name='first_name' placeholder='First Name'
-                    value={formData.first_name} onChange={handleChange} />
+                    value={formValues.first_name} onChange={handleChange} />
                 Last name: <input type='text'
                     name='last_name' placeholder='Last Name'
-                    value={formData.last_name} onChange={handleChange} />
+                    value={formValues.last_name} onChange={handleChange} />
                 Username: <input type='text' 
                     name='username' placeholder='Username'
-                    value={formData.username} onChange={handleChange} />
+                    value={formValues.username} onChange={handleChange} />
                 Password: <input type='password'
                     name='password' placeholder='Password'
-                    value={formData.password} onChange={handleChange} />
+                    value={formValues.password} onChange={handleChange} />
                         
                 <button type='submit'>Register</button>                
                 
