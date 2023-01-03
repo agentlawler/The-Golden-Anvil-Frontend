@@ -1,6 +1,10 @@
+import LoginContext from './LoginContext'
 import { Route,Routes } from 'react-router-dom'
 import ItemDetail from './ItemDetail'
 import ItemPage from './ItemPage'
+import Login from './components/Login'
+import Register from './components/Register'
+import Logout from './components/Logout'
 
 
 
