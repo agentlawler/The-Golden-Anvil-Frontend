@@ -11,8 +11,9 @@ const Nav = () => {
                   <ul className='navbar-links'>
                     <li><NavLink to="/additem" >Create Item</NavLink></li>
                     <li><NavLink to="/items" >Item Page</NavLink></li>
+                    <li><NavLink to="/register" >Register</NavLink></li>
+                    <li><NavLink to='/login'>Log In</NavLink></li>
                     {/* <li><NavLink to="/logout" >Logout</NavLink></li> */}
-                    <li><NavLink to="/cart" >Cart</NavLink></li>
                     <li><NavLink onClick={(() => navigate(-1))}>Back</NavLink></li>
                   </ul>
                 </nav>
