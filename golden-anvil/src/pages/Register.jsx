@@ -1,15 +1,17 @@
 import React, { useState } from 'react';
-import AxiosInstance from '../AxiosInstance'
-import {LoginContext} from '../LoginContext'
+import axios from 'axios';
+import { useNavigate, Link } from 'react-router-dom';
 
 const Register = () => {
 
+   
+    let navigate = useNavigate()
     
 
     const [formValues, setFormValues] = useState({
         email: '',
-        first_name: '',
-        last_name: '',
+        firstName: '',
+        lastName: '',
         username: '',
         password: ''
     })
@@ -21,29 +23,22 @@ const Register = () => {
     const handleSubmit = async (event) => {
         event.preventDefault()
 
-        await AxiosInstance.post('/users/create', {
+        await axios.post('http://localhost:3001/user/register', {
             email: formValues.email,
-            first_name: formValues.first_name,
-            last_name: formValues.last_name,
+            firstName: formValues.firstName,
+            lastName: formValues.lastName,
             username: formValues.username,
             password: formValues.password
         })
-
-        .then((res) => {
-            localStorage.setItem('username', formValues.username)
-            localStorage.setItem('user_id', res.data.id)
-            AxiosInstance.post('token/obtain/', {
-                username: formValues.username,
-                password: formValues.password
-            })
-        .then(res => {
-            AxiosInstance.defaults.headers['Authorization'] = `JWT ${res.data.access}`
-            localStorage.setItem('access_token', res.data.access)
-            localStorage.setItem('refresh_token', res.data.refresh)
-            return res
-            })
+        setFormValues({
+            email: '',
+            firstName:'',
+            lastName: '',
+            username: '',
+            password: '',
+            confirmPassword: ''
         })
-        .catch(error => console.error)
+        navigate('/login')
     }
 
     return (
@@ -53,23 +48,25 @@ const Register = () => {
                 Email: <input type='email' name='email' placeholder='Email'
                     value={formValues.email} onChange={handleChange} />
                 First name: <input type='text'
-                    name='first_name' placeholder='First Name'
-                    value={formValues.first_name} onChange={handleChange} />
+                    name='firstName' placeholder='First Name'
+                    value={formValues.firstName} onChange={handleChange} />
                 Last name: <input type='text'
-                    name='last_name' placeholder='Last Name'
-                    value={formValues.last_name} onChange={handleChange} />
+                    name='lastName' placeholder='Last Name'
+                    value={formValues.lastName} onChange={handleChange} />
                 Username: <input type='text' 
                     name='username' placeholder='Username'
                     value={formValues.username} onChange={handleChange} />
                 Password: <input type='password'
                     name='password' placeholder='Password'
                     value={formValues.password} onChange={handleChange} />
-                        
+                Confirm Password: <input type='password'
+                    name='confirmPassword' placeholder='Confirm Password'
+                    value={formValues.confirmPassword} onChange={handleChange} />
                 <button type='submit'>Register</button>                
                 
                 <div className="form-footer">
                 <p>Have an account already?</p>
-                <a href='/login/'> Log-In </a>
+                <a href='/login'> Log-In </a>
                     </div>
             </form>
       </div>

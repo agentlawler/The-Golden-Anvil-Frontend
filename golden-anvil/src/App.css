@@ -1,8 +1,153 @@
-.App {
-  text-align: center;
+*{
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-.logo {
-  display: flex;
-  width: 15px;
+html{
+  --black1: #000000;
+  --black2: #1a1a1a;
+  --gold1: #CBB26A;
+  --gold2: #d8c690;
+  --gold3: #e5d9b6;
+  --purple: #8751a0;
+  
 }
+
+.App {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 100vh;
+  background: var(--black2);
+  color: var(--gold3);
+}
+
+
+header .logo{
+  display: block;
+  max-width: 250px;
+  width: 100%;
+  position: relative;
+  right: 8px;
+  margin: 0 auto;
+  margin-top: 10px;
+}
+
+header nav {
+  margin: 0 auto;
+  width: 100%;
+  max-width: 350px;
+  padding: 16px 0;
+}
+
+header nav ul {
+  display: flex;
+  list-style: none;
+  gap: 24px;
+  font-weight: bold;
+  width: 100%;
+  max-width: 300px;
+  justify-content: center;
+}
+
+header nav ul a{
+  color: var(--gold1);
+  text-decoration: none;
+  padding-bottom: 2px;
+  opacity: .7;
+  border-bottom: 2px solid var(--black);
+  transition: all .3s ease;
+}
+
+header nav ul a:hover{
+  opacity: 1;
+  color: var(--purple);
+}
+
+
+
+.container {
+  max-width: 960px;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  
+}
+
+
+.Items {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.Items .item, .Items .item a{
+  display: block;
+  position: relative;
+  max-width: 235px;
+  width: 100%;
+  aspect-ratio: 1/1;
+  overflow: hidden;
+  border-radius: 16px; 
+  box-shadow: 0 0 10px 10px rgba(0,0,0,0.1);
+  border: 1px solid var(--gold2);
+  background-size: cover;
+  opacity: .75;
+  transition: all .3s ease;
+}
+
+.Items .item:hover, .Items .item a:hover{
+  opacity: 1;
+  border-color: var(--gold3);
+}
+
+.Items .item img{
+  width: 100%;
+}
+
+.Items .item .info{
+  position: absolute;
+  color: var(--gold2);
+  text-decoration: none;
+  top:45%;
+  width: 100%;
+  background: var(--black2);
+  padding: 8px;
+  text-align: center;
+  transition: all .3s ease;
+}
+
+.Items .item:hover .info{
+  background: var(--purple);
+  color: var(--gold1);
+}
+
+footer .affiliates{
+  display: flex;
+  gap: 16px;
+  max-width: 350px;
+  width: 100%;
+  margin: 0 auto;
+  justify-content: center;
+}
+
+footer .affiliates img{
+  width: 30px;
+  position: relative;
+  bottom: 0;
+  transition: all .3s ease;
+  border-radius: 7px;
+}
+
+footer .affiliates img:hover {
+  bottom: 4px;
+}
+
+footer .footerInfo{
+  padding-top: 15px;
+}
+
+
+
